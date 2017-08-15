@@ -7,6 +7,7 @@ class Book
     @title = title
     @author = author
     @isbn = isbn
+    @due_date = nil
   end
 
   def self.create(a, b, c)
@@ -16,17 +17,16 @@ class Book
   end
 
   def self.current_due_date
-    @due_date = Time.now + 259200
+    Time.now + 259200
   end
 
   def self.overdue_books
     @@on_loan.each do |book|
       if book.due_date < Time.now
-        book.name
-      else
-        false
+        book
       end
     end
+    false
   end
 
   def self.browse
@@ -43,7 +43,7 @@ class Book
 
   #Reader
   def due_date
-    Book.current_due_date
+    @due_date = Book.current_due_date
   end
 
   #Writer
@@ -108,5 +108,6 @@ p rain.due_date
 p Book.available.inspect
 
 p Book.borrowed.inspect
-
-# p Book.overdue_books.inspect
+p "=============="
+p Book.overdue_books
+p "=========="
