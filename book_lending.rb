@@ -16,10 +16,17 @@ class Book
   end
 
   def self.current_due_date
-    @due_date
+    @due_date = Time.now + 259200
   end
 
   def self.overdue_books
+    @@on_loan.each do |book|
+      if book.due_date < Time.now
+        book.name
+      else
+        false
+      end
+    end
   end
 
   def self.browse
@@ -34,21 +41,37 @@ class Book
     @@on_loan
   end
 
+  #Reader
   def due_date
-    @due_date = Time.now + 259200
+    Book.current_due_date
   end
+
+  #Writer
+  def due_date=(num)
+    @due_date = num
+  end
+
 
   def borrow
     if lent_out? == false
       Book.current_due_date
       @@on_shelf.delete(self)
       @@on_loan << self
+      true
     else
       false
     end
   end
 
   def return_to_library
+    if lent_out? == true
+      due_date= nil
+      @@on_loan.delete(self)
+      @@on_shelf << self
+      true
+    else
+      false
+    end
   end
 
   def lent_out?
@@ -78,7 +101,12 @@ p Book.available.inspect
 p Book.borrowed.inspect
 
 p rain.lent_out?
-
 p rain.borrow.inspect
-
 p rain.lent_out?
+p rain.due_date
+
+p Book.available.inspect
+
+p Book.borrowed.inspect
+
+# p Book.overdue_books.inspect
