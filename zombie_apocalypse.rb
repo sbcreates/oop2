@@ -47,9 +47,11 @@ class Zombie
 
   def self.some_die_off
     how_many_die = rand(11)
+    p how_many_die
     how_many_die.times do
       @@horde.pop
     end
+
   end
 
   def self.spawn
@@ -73,4 +75,7 @@ Zombie.spawn
 p Zombie.all.inspect
 p "*------*"
 p Zombie.increase_plague_level
+p "*------*"
+Zombie.new_day
+p Zombie.all.inspect
 p "*------*"
