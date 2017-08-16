@@ -26,10 +26,7 @@ class Zombie
     elsif survive_attack? == true
       "You escaped!"
     else
-
-
-
-
+    end
   end
 
   def outrun_zombie?
@@ -39,11 +36,7 @@ class Zombie
   end
 
   def self.all
-    total_horde = 0
-    @horde.each do |zombies|
-      total_horde += zombies
-    end
-    total_horde
+    @@horde
   end
 
   def self.new_day
@@ -73,3 +66,9 @@ class Zombie
   end
 
 end
+
+p Zombie.all.inspect
+p "*------*"
+Zombie.new_day
+p Zombie.all.inspect
+p "*------*"
