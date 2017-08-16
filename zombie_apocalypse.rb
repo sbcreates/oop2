@@ -34,10 +34,21 @@ class Zombie
   end
 
   def outrun_zombie?
-    
+    your_speed = rand(@@max_speed)
+    if your_speed > @speed
+      true
+    else
+      false
+    end
   end
 
   def survive_attack?
+    your_strength = rand(@@max_strength)
+    if your_strength > @strength
+      true
+    else
+      false
+    end
   end
 
   def self.all
@@ -56,7 +67,6 @@ class Zombie
     how_many_die.times do
       @@horde.pop
     end
-
   end
 
   def self.spawn
