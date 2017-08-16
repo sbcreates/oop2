@@ -48,16 +48,16 @@ class Zombie
   def self.some_die_off
     how_many_die = rand(11)
     how_many_die.times do
-      @horde.pop
+      @@horde.pop
     end
   end
 
   def self.spawn
-    zombie_plague_level = rand(@plague_level)
+    zombie_plague_level = rand(@@plague_level)
     speed = rand(@@max_speed)
     strength = rand(@@max_strength)
     zombie_plague_level.times do
-      Zombie.new(speed, strength)
+      @@horde << Zombie.new(speed, strength)
     end
   end
 
@@ -69,6 +69,6 @@ end
 
 p Zombie.all.inspect
 p "*------*"
-Zombie.new_day
+Zombie.spawn
 p Zombie.all.inspect
 p "*------*"
