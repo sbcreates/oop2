@@ -21,11 +21,18 @@ class Zombie
   end
 
   def encounter
+    if outrun_zombie? == true
+      "You escaped!"
+    elsif survive_attack? == true
+      "You escaped!"
+    else
+
+
+
 
   end
 
   def outrun_zombie?
-    rand(@@max_speed)
   end
 
   def survive_attack?
@@ -54,9 +61,11 @@ class Zombie
 
   def self.spawn
     zombie_plague_level = rand(@plague_level)
-    @@horde << zombie_plague_level
-    @speed = rand(@@max_speed)
-    @strength = rand(@@max_strength)
+    speed = rand(@@max_speed)
+    strength = rand(@@max_strength)
+    zombie_plague_level.times do
+      Zombie.new(speed, strength)
+    end
   end
 
   def self.increase_plague_level
@@ -64,9 +73,3 @@ class Zombie
   end
 
 end
-
-sam = Zombie.new(4, 7)
-
-p sam.inspect
-
-Zombie.increase_plague_level
