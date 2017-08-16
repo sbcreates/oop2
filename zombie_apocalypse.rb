@@ -72,3 +72,5 @@ p "*------*"
 Zombie.spawn
 p Zombie.all.inspect
 p "*------*"
+p Zombie.increase_plague_level
+p "*------*"
