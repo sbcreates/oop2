@@ -26,10 +26,15 @@ class Zombie
     elsif survive_attack? == true
       "You escaped!"
     else
+      speed = rand(@@max_speed)
+      strength = rand(@@max_strength)
+      @@horde << Zombie.new(speed, strength)
+      "You are now a zombie"
     end
   end
 
   def outrun_zombie?
+    
   end
 
   def survive_attack?
@@ -79,3 +84,7 @@ p "*------*"
 Zombie.new_day
 p Zombie.all.inspect
 p "*------*"
+zombie1 = Zombie.all[0]
+zombie2 = Zombie.all[1]
+p zombie1.encounter
+p Zombie.all.inspect
